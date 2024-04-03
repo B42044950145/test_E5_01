@@ -1,0 +1,20 @@
+name: 测试
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'  # 每6小时执行一次
+  workflow_dispatch:  # 手动触发器
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检查 仓库
+        uses: actions/checkout@v4
+
+      - name:  开始 测试 #脚本可替换自己熟悉的！
+        run: curl -Lso- bench.sh | bash
+
+      - name: 保持 运行 #这里可有可无,保持运行10分钟
+        run: 
+          sleep 600
